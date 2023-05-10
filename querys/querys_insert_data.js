@@ -105,6 +105,14 @@ function info_add() {
     return query;
 }
 
+function product_edit() {
+    let query = 'UPDATE products SET\
+    pro_macaid=?, pro_subcaid=?, \
+    pro_name=?, pro_code=?, pro_mainprice=?,\
+    pro_count=?, pro_title=?, pro_delivery=?,\
+    pro_mainphoto=? WHERE pro_id=?';
+    return query;
+}
 
 
 
@@ -123,3 +131,4 @@ module.exports.links=links;
 module.exports.news=news;
 module.exports.question_answer=question_answer;
 module.exports.info_add=info_add;
+module.exports.product_edit=product_edit;

@@ -321,3 +321,71 @@ exports.info_add = (req, res) => {
     }
     runFunc();
 }
+
+exports.product_edit = (req, res) => {
+    const body = req.body;
+    async function runFunc() {
+        try {
+            let sql = QueryString.product_edit();
+            let params = QueryParams.product_edit(body.product_edit);
+            const productID = await ResultDB.UpdateParams(sql, params);
+            
+            //parametrlarni qo`shish
+            let sql_params = "";
+            let params_params = [];
+            const pro_params = body.product_insert.params;
+            if (pro_params.length > 0) {
+                for (let i_par = 0; i_par < pro_params.length; i_par++) {
+                    sql_params = QueryString.product_insert_params();
+                    params_params = QueryParams.product_insert_params(productID, pro_params[i_par].params_ident, pro_params[i_par].params_value);
+                    console.log(params_params);
+                    await ResultDB.InsertParams(sql_params, params_params);
+                }
+            }
+
+
+            //narxlarni qo`shish
+            let sql_price = "";
+            let params_price = [];
+            const prices = body.product_insert.prices;
+            if (prices.length > 0) {
+                for (let i_pr = 0; i_pr < prices.length; i_pr++) {
+                    sql_price = QueryString.product_insert_price();
+                    params_price = QueryParams.product_insert_price(productID, prices[i_pr].price_ident, prices[i_pr].price_value);
+                    await ResultDB.InsertParams(sql_price, params_price);
+                }
+            }
+
+
+            // ranglarni qo`shish
+            let sql_color = "";
+            let params_color = [];
+            const colors = body.product_insert.colors;
+            if (colors.length > 0) {
+                for (let i_c = 0; i_c < colors.length; i_c++) {
+                    sql_color = QueryString.product_insert_colors();
+                    params_color = QueryParams.product_insert_colors(productID, colors[i_c]);
+                    await ResultDB.InsertParams(sql_color, params_color);
+                }
+            }
+
+
+            // Rasmlarni qo`shish
+            let sql_photos = "";
+            let params_photos = [];
+            const photos = body.product_insert.photos;
+            if (photos.length > 0) {
+                for (let i_p = 0; i_p < photos.length; i_p++) {
+                    sql_photos = QueryString.product_insert_photos();
+                    params_photos = QueryParams.product_insert_photos(productID, photos[i_p]);
+                    await ResultDB.InsertParams(sql_photos, params_photos);
+                }
+            }
+
+            response.status(200, 'success', {}, res);
+        } catch (error) {
+            response.status(300, 'error', error.sqlMessage, res);
+        }
+    }
+    runFunc();
+}

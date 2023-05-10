@@ -90,6 +90,13 @@ function info_add(data) {
     return params;
 }
 
+function product_edit(data) {
+    const params = [data.main_ident,data.sub_ident,
+    data.name,data.code,data.price,
+    data.count,data.title,data.delivery,
+    data.photo,data.pro_ident];
+    return params;
+}
 
 module.exports.product_insert=product_insert;
 module.exports.product_insert_photos=product_insert_photos;
@@ -106,3 +113,4 @@ module.exports.links=links;
 module.exports.news=news;
 module.exports.question_answer=question_answer;
 module.exports.info_add=info_add;
+module.exports.product_edit=product_edit;

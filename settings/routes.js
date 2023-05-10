@@ -133,7 +133,7 @@ module.exports = (app) => {
         .route('/onlinemarket/show/search_top')
         .post(ShowData.search_top)    
         
- 
+
     //**************************************** InsertData ********************************/
     app
         .route('/onlinemarket/insert/product_insert')
@@ -162,7 +162,7 @@ module.exports = (app) => {
     app
         .route('/onlinemarket/insert/info_add')
         .post(InsertData.info_add)
-        
+   
 
     //**************************************** UpdateData ********************************/
     app
@@ -280,7 +280,9 @@ module.exports = (app) => {
     app
         .route('/onlinemarket/update/region_list_status')
         .post(UpdateInfo.region_list_status)
-
+        app
+        .route('/onlinemarket/update/product_edit')
+        .post(InsertData.product_edit)    
 
 
     //**************************************** ShowInfo ********************************/
