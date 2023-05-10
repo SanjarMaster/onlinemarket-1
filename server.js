@@ -21,7 +21,7 @@ app.post('/onlinemarket/file_upload', upload.single('photo'), function (req, res
     const fileArray = file.originalname.split(".");
     var type = fileArray[fileArray.length - 1];
     var file_name = file.filename + "." + type;
-    fs.rename(file.path, 'Images/' + file_name, function (err) {
+    fs.rename(file.path, '/var/www/api.ubaytools.com/Images/' + file_name, function (err) {
         if (err) throw err;
         console.log('renamed complete');
     });
@@ -36,7 +36,7 @@ app.post('/onlinemarket/file_list', upload.single('photo'),function (req, res, n
         console.log("files: ",files);
         return files;
     };
-    getFileList('Images').then((files) => {
+    getFileList('/var/www/api.ubaytools.com/Images').then((files) => {
         res.json(files).end();
     });
     

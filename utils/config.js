@@ -2,6 +2,6 @@ module.exports = {
     HOST: 'localhost',
     PORT: '3306',
     DBUSER: 'root',
-    DBPASSWORD: '',
+    DBPASSWORD: '719364825gG@',
     DBNAME: 'online_market'
 } 
